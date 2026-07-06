@@ -68,7 +68,7 @@
   .card-label{ font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; font-weight:700; }
 
   .last-intake{ display:flex; align-items:center; gap: 16px; }
-  .last-intake .icon-badge{ width: 56px; height:56px; border-radius: 16px; background: var(--surface-raised); display:flex;align-items:center;justify-content:center; font-size: 28px; flex-shrink:0; border: 1.5px solid var(--line); }
+  .last-intake .icon-badge{ width: auto; min-width:56px; height:56px; border-radius: 16px; background: var(--surface-raised); display:flex;align-items:center;justify-content:center; font-size: 24px; letter-spacing:-3px; padding:0 6px; white-space:nowrap; flex-shrink:0; border: 1.5px solid var(--line); }
   .last-intake .details{ flex:1; min-width:0; }
   .last-intake .product-name{ font-family: var(--font-display); font-size: 19px; font-weight:700; }
   .last-intake .meta{ color: var(--muted); font-size: 13px; margin-top:2px; font-family: var(--font-mono); }
@@ -183,7 +183,7 @@
   .live-tag{ background: var(--accent); color: var(--accent-ink); font-size:9px; font-weight:800; letter-spacing:0.4px; text-transform:uppercase; padding:2px 7px; border-radius: 8px; margin-left:6px; vertical-align:1px; }
 
   /* ---------- timetable grid (sidescroller) ---------- */
-  .tt-toolbar{ position: sticky; top:0; z-index:20; background: var(--bg); padding-top:2px; }
+  .tt-toolbar{ padding-top:2px; }
   .tt-title-row{ display:flex; align-items:center; justify-content:space-between; gap:10px; }
   .tt-view-toggle{ display:flex; gap:4px; background: var(--surface); border:1.5px solid var(--line); border-radius:12px; padding:3px; }
   .tt-view-btn{ width:34px; height:30px; border-radius:9px; background:transparent; border:none; color: var(--muted); font-size:15px; display:flex; align-items:center; justify-content:center; }
@@ -204,12 +204,16 @@
   .tt-scroll::-webkit-scrollbar{ height:6px; }
   .tt-scroll::-webkit-scrollbar-thumb{ background: var(--line); border-radius:4px; }
   .tt-inner{ position:relative; }
-  .tt-corner{ position:sticky; left:0; top:0; z-index:8; background: var(--bg); }
   .tt-stagecol{ position:sticky; left:0; z-index:6; background: var(--bg); }
   .tt-stage-name{ display:flex; align-items:center; padding:0 10px; font-family: var(--font-display); font-size:11px; font-weight:700; color: var(--text); border-bottom:1px solid var(--line-soft); border-right:1px solid var(--line); box-sizing:border-box; line-height:1.2; }
   .tt-hour-label{ position:absolute; top:0; display:flex; align-items:center; padding-left:8px; box-sizing:border-box; font-family: var(--font-mono); font-size:11px; color: var(--muted); border-left:1px solid var(--line-soft); border-bottom:1px solid var(--line); }
   .tt-day-label{ position:absolute; top:0; display:flex; align-items:center; padding-left:8px; box-sizing:border-box; font-family: var(--font-display); font-size:12px; font-weight:800; color: var(--text); border-bottom:1px solid var(--line); }
   .tt-day-divider{ position:absolute; top:0; width:2px; background: var(--violet); z-index:3; }
+  .tt-gap-marker{
+    position:absolute; box-sizing:border-box; display:flex; align-items:center; justify-content:center;
+    font-family: var(--font-mono); font-size:10px; color: var(--muted-dim); font-style:italic;
+    border-left:1px dashed var(--line-soft); border-bottom:1px solid var(--line); white-space:nowrap; overflow:hidden;
+  }
   .tt-row-bg{ position:absolute; left:0; border-bottom:1px solid var(--line-soft); box-sizing:border-box; }
   .tt-hour-line{ position:absolute; top:0; width:1px; background: var(--line-soft); }
   .tt-event{ position:absolute; background: var(--surface); border:1.5px solid var(--line); border-radius:10px; padding:5px 7px; box-sizing:border-box; overflow:hidden; display:flex; flex-direction:column; justify-content:center; gap:1px; }
@@ -292,18 +296,17 @@
   .last-logged-info .ll-meta{ display:flex; flex-direction:column; align-items:flex-end; gap:2px; flex-shrink:0; }
   .last-logged-info .ll-time{ font-size:13px; color: var(--text); font-family: var(--font-mono); font-weight:600; }
   .last-logged-info .ll-count{ font-size:12px; color: var(--amber); font-weight:700; font-family: var(--font-mono); }
+  .last-logged-info .ll-since{ margin-top:8px; font-size:20px; font-weight:700; color: var(--accent); font-family: var(--font-mono); line-height:1; }
+  .last-water-row{ display:flex; align-items:center; justify-content:space-between; gap:8px; margin-top:14px; padding-top:14px; border-top:1px solid var(--line-soft); }
+  .last-water-row .lw-name{ font-size:14px; font-weight:700; display:flex; align-items:center; gap:8px; min-width:0; color: var(--text); }
+  .last-water-row .lw-meta{ display:flex; flex-direction:column; align-items:flex-end; gap:2px; flex-shrink:0; }
+  .last-water-row .lw-time{ font-size:12px; color: var(--muted); font-family: var(--font-mono); font-weight:600; }
+  .last-water-row .lw-since{ font-size:20px; font-weight:700; color: var(--teal); font-family: var(--font-mono); line-height:1; margin-top:2px; }
+  .lw-log-btn{ flex-shrink:0; background: rgba(47,230,200,0.12); border:1.5px solid var(--teal); color: var(--teal); font-weight:700; font-size:12px; padding:8px 12px; border-radius:999px; margin-left:6px; }
+  .lw-log-btn:active{ background: rgba(47,230,200,0.22); }
 
   .progress-bar-track{ height:6px; border-radius:999px; background: rgba(255,255,255,0.1); width:100%; overflow:hidden; }
   .progress-bar-fill{ height:100%; background: var(--teal); border-radius:999px; transition: width .3s ease; }
-
-  .quick-log-btn{
-    display:flex; align-items:center; justify-content:center; gap:10px; width:100%;
-    padding:16px; border-radius:999px; background: rgba(47,230,200,0.12);
-    border:1.5px solid var(--teal); color: var(--teal); font-weight:700; font-size:15px;
-    margin: 16px 0 4px; box-shadow: 0 0 24px rgba(47,230,200,0.18);
-  }
-  .quick-log-btn:active{ background: rgba(47,230,200,0.22); }
-  .quick-log-btn .emoji{ font-size:20px; }
 
   .log-btn{ position:relative; }
   .log-btn .badge-count{ position:absolute; top:10px; right:12px; font-size:12px; font-weight:800; color: var(--amber); font-family: var(--font-mono); }
@@ -334,15 +337,12 @@
   .log-row .emoji{ font-size:20px; width:28px; text-align:center; flex-shrink:0; }
   .log-row .info{ flex:1; min-width:0; }
   .log-row .info .label{ font-size:14px; font-weight:700; }
+  .log-row .info .label .log-amount{ color: var(--amber); font-family: var(--font-mono); font-weight:700; font-size:13px; }
   .log-row .info .time{ font-size:12px; color: var(--muted); font-family: var(--font-mono); margin-top:1px; }
-  .log-row .time-edit{
-    background:none; border:none; padding:0; margin-top:2px;
-    font-size:12px; color: var(--muted); font-family: var(--font-mono);
-    text-decoration: underline; text-underline-offset:2px; text-decoration-color: var(--line);
-  }
-  .log-row .time-edit:active{ color: var(--violet); }
-  .log-row .del{ width:30px; height:30px; border-radius:10px; background: transparent; color: var(--muted-dim); font-size:16px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
-  .log-row .del:active{ background: rgba(255,107,107,0.2); color: var(--danger); }
+  .log-row .time-edit{ width:30px; height:30px; border-radius:10px; background: transparent; border:1.5px solid var(--line); color: var(--muted-dim); font-size:14px; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-right:8px; }
+  .log-row .time-edit:active{ background: rgba(139,107,255,0.2); color: var(--violet); border-color: var(--violet); }
+  .log-row .del{ width:30px; height:30px; border-radius:10px; background: transparent; border:1.5px solid var(--line); color: #8B1A1A; font-size:16px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .log-row .del:active{ background: rgba(139,26,26,0.2); color: #8B1A1A; }
 
   .day-group{ margin-bottom: 6px; }
   .day-group-header{ display:flex; justify-content:space-between; align-items:baseline; padding: 10px 2px 8px; }
@@ -351,7 +351,11 @@
 
   .settings-link{ background:none; border:none; color: var(--muted); font-size:12px; font-weight:600; padding:4px; }
 
-  .settings-dialog{ max-height: 78vh; display:flex; flex-direction:column; }
+  dialog.confirm-dialog.settings-dialog{
+    width: 100vw; max-width: 100vw; height: 100dvh; max-height: 100dvh;
+    margin: 0; border-radius: 0; display:flex; flex-direction:column;
+    box-sizing: border-box;
+  }
   .settings-list{ overflow-y:auto; flex:1; -webkit-overflow-scrolling: touch; }
   .settings-row{
     display:flex; align-items:center; gap:12px; padding:12px 8px;
@@ -368,8 +372,13 @@
   .settings-row .settings-remove{ width:28px; height:28px; border-radius:10px; background:transparent; color: var(--muted-dim); font-size:15px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
   .settings-row .settings-remove:active{ background: rgba(255,107,107,0.2); color: var(--danger); }
   .settings-add-btn{ width:100%; margin-top:12px; padding:12px; border-radius:999px; background:transparent; border:1.5px dashed var(--line); color: var(--muted); font-size:13px; font-weight:600; }
+  dialog.confirm-dialog button.settings-add-btn{ flex: 0 0 auto; }
   .settings-add-btn:active{ background: rgba(255,255,255,0.06); }
-  .settings-dialog{ padding-top: 44px; position:relative; }
+  dialog.confirm-dialog.settings-dialog{
+    padding-top: calc(50px + env(safe-area-inset-top));
+    padding-bottom: env(safe-area-inset-bottom);
+    position: fixed; inset: 0; top:0; left:0;
+  }
   .settings-close-x{
     position:absolute; top:14px; right:14px; width:30px; height:30px;
     border-radius:10px; background: var(--surface); border:1.5px solid var(--line);
@@ -377,21 +386,16 @@
   }
   .settings-close-x:active{ background: rgba(255,107,107,0.15); color: var(--danger); }
   .add-product-title{ font-family: var(--font-display); font-weight:700; font-size:16px; color: var(--text); margin:0 0 14px; }
-
-  /* Timetable bottom spacing fix */
-  #screen-timetable{
-    padding-bottom: calc(150px + env(safe-area-inset-bottom));
+  .edit-field-label{ display:block; font-size:12px; color: var(--muted); font-weight:600; margin-bottom:6px; }
+  .amount-stepper{ display:flex; align-items:center; gap:10px; }
+  .amount-btn{ width:44px; height:44px; border-radius:12px; background: var(--surface); border:1.5px solid var(--line); color: var(--text); font-size:20px; font-weight:700; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .amount-btn:active{ background: var(--surface-raised); border-color: var(--violet); color: var(--violet); }
+  .amount-input{
+    flex:1; min-width:0; text-align:center; background: var(--surface); border:1.5px solid var(--line); color: var(--text);
+    border-radius: 12px; padding: 10px 8px; font-size: 16px; font-weight:700; font-family: var(--font-mono);
+    -moz-appearance: textfield;
   }
-
-  #screen-timetable .tt-scroll{
-    padding-bottom: calc(170px + env(safe-area-inset-bottom)) !important;
-    margin-bottom: calc(40px + env(safe-area-inset-bottom));
-  }
-
-  #screen-timetable .tt-inner{
-    margin-bottom: calc(140px + env(safe-area-inset-bottom));
-  }
-
+  .amount-input::-webkit-outer-spin-button, .amount-input::-webkit-inner-spin-button{ -webkit-appearance:none; margin:0; }
 
   /* Dialog visibility fix */
   dialog:not([open]){
@@ -463,11 +467,8 @@
         <div class="progress-bar-track" id="progress-track" style="display:none;">
           <div class="progress-bar-fill" id="progress-fill" style="width:0%;"></div>
         </div>
+        <div class="last-water-row" id="last-water-row" style="display:none;"></div>
       </div>
-
-      <button class="quick-log-btn" id="quick-log-btn" style="display:none;">
-        <span class="emoji" id="quick-log-icon"></span><span id="quick-log-text"></span>
-      </button>
 
       <div class="log-list-header" style="margin:24px 0 10px;">
         <span class="card-label" style="margin:0;">Supplementen &amp; voeding</span>
@@ -573,8 +574,15 @@
 </dialog>
 
 <dialog class="confirm-dialog" id="edit-time-dialog">
-  <p class="add-product-title" style="margin-bottom:14px;">Tijd aanpassen</p>
+  <p class="add-product-title" style="margin-bottom:14px;">Log aanpassen</p>
+  <label class="edit-field-label">Tijd</label>
   <input type="time" id="edit-time-input" class="edit-time-input">
+  <label class="edit-field-label" style="margin-top:14px;">Aantal</label>
+  <div class="amount-stepper">
+    <button type="button" id="edit-amount-minus" class="amount-btn">−</button>
+    <input type="number" id="edit-amount-input" class="amount-input" min="0.25" step="0.25" value="1">
+    <button type="button" id="edit-amount-plus" class="amount-btn">+</button>
+  </div>
   <div class="row" style="margin-top:16px;">
     <button id="edit-time-cancel">Annuleren</button>
     <button class="danger" id="edit-time-confirm" style="background:var(--accent); color:var(--accent-ink); border-color:var(--accent);">Opslaan</button>
@@ -1210,6 +1218,14 @@
     if(el) el.textContent = logDayLabel(logDayKey(now()));
   }
 
+  function formatMinutesAgo(ms){
+    var mins = Math.max(0, Math.floor(ms / 60000));
+    if(mins < 60) return mins + ' min';
+    var h = Math.floor(mins / 60);
+    var m = mins % 60;
+    return h + 'u ' + (m < 10 ? '0'+m : m) + 'min';
+  }
+
   function renderRingCard(){
     var n = now();
     var todays = entries.filter(function(e){ return isToday(e.timestamp); });
@@ -1224,34 +1240,53 @@
     var infoEl = document.getElementById('last-logged-info');
     var trackEl = document.getElementById('progress-track');
     var fillEl = document.getElementById('progress-fill');
-    var qbtn = document.getElementById('quick-log-btn');
+    var waterRowEl = document.getElementById('last-water-row');
 
     if(entries.length === 0){
       infoEl.innerHTML = '<div class="empty-state">Nog niets gelogd</div>';
       trackEl.style.display = 'none';
-      qbtn.style.display = 'none';
+      waterRowEl.style.display = 'none';
       return;
     }
 
-    var last = entries[entries.length - 1];
-    var p = productById(last.productId);
-    var d = new Date(last.timestamp);
-    var countForProductToday = todays.filter(function(e){ return e.productId === last.productId; }).length;
-    var share = totalToday ? Math.round((countForProductToday/totalToday)*100) : 0;
+    var nonWaterEntries = entries.filter(function(e){ return e.productId !== 'water'; });
+    if(nonWaterEntries.length === 0){
+      infoEl.innerHTML = '<div class="empty-state">Nog niets gelogd</div>';
+      trackEl.style.display = 'none';
+    } else {
+      var last = nonWaterEntries[nonWaterEntries.length - 1];
+      var p = productById(last.productId);
+      var d = new Date(last.timestamp);
+      var countForProductToday = todays.filter(function(e){ return e.productId === last.productId; }).length;
+      var share = totalToday ? Math.round((countForProductToday/totalToday)*100) : 0;
+      var minutesSinceLast = formatMinutesAgo(n - d);
 
-    infoEl.innerHTML =
-      '<div class="ll-label">Laatst gelogd</div>' +
-      '<div class="ll-row">' +
-        '<div class="ll-name">'+ p.icon +' '+ p.label +'</div>' +
-        '<div class="ll-meta"><div class="ll-time">'+ fmtClock(d) +'</div><div class="ll-count">'+ countForProductToday +' ×</div></div>' +
-      '</div>';
-    trackEl.style.display = 'block';
-    fillEl.style.width = share + '%';
+      infoEl.innerHTML =
+        '<div class="ll-label">Laatst gelogd</div>' +
+        '<div class="ll-row">' +
+          '<div class="ll-name">'+ p.icon +' '+ p.label +'</div>' +
+          '<div class="ll-meta"><div class="ll-time">'+ fmtClock(d) +'</div><div class="ll-count">'+ countForProductToday +' ×</div></div>' +
+        '</div>' +
+        '<div class="ll-since">'+ minutesSinceLast +'</div>';
+      trackEl.style.display = 'block';
+      fillEl.style.width = share + '%';
+    }
 
-    qbtn.style.display = 'flex';
-    document.getElementById('quick-log-icon').textContent = p.icon;
-    document.getElementById('quick-log-text').textContent = 'Log ' + p.label.toLowerCase();
-    qbtn.onclick = function(){ logIntake(p.id); };
+    var waterEntries = entries.filter(function(e){ return e.productId === 'water'; });
+    if(waterEntries.length === 0){
+      waterRowEl.style.display = 'flex';
+      waterRowEl.innerHTML = '<div class="lw-name">💧 Water</div><div class="lw-meta"><div class="lw-time">Nog niet gelogd</div></div><button class="lw-log-btn" id="lw-log-btn">+ Log</button>';
+    } else {
+      var lastWater = waterEntries[waterEntries.length - 1];
+      var wd = new Date(lastWater.timestamp);
+      waterRowEl.style.display = 'flex';
+      waterRowEl.innerHTML =
+        '<div class="lw-name">💧 Water</div>' +
+        '<div class="lw-meta"><div class="lw-time">'+ fmtClock(wd) +'</div><div class="lw-since">'+ formatMinutesAgo(n - wd) +'</div></div>' +
+        '<button class="lw-log-btn" id="lw-log-btn">+ Log</button>';
+    }
+    var lwBtn = document.getElementById('lw-log-btn');
+    if(lwBtn) lwBtn.addEventListener('click', function(){ logIntake('water'); });
   }
 
   function renderHistory(){
@@ -1286,9 +1321,10 @@
         var d = new Date(e.timestamp);
         return '<div class="log-row" data-id="'+ e.id +'">' +
           '<div class="emoji">'+ p.icon +'</div>' +
-          '<div class="info"><div class="label">'+ p.label +'</div>' +
-            '<button class="time-edit" data-edit-time="'+ e.id +'">'+ fmtClock(d) +' ✎</button>' +
+          '<div class="info"><div class="label">'+ p.label + (e.amount && e.amount !== 1 ? ' <span class="log-amount">×'+ e.amount +'</span>' : '') +'</div>' +
+            '<div class="time">'+ fmtClock(d) +'</div>' +
           '</div>' +
+          '<button class="time-edit" data-edit-time="'+ e.id +'">✎</button>' +
           '<button class="del" data-del="'+ e.id +'">✕</button>' +
         '</div>';
       }).join('');
@@ -1327,7 +1363,98 @@
   var TT_GLOBAL_START = DAY_START_MAP[DAY_LABELS[0]];
   var TT_LAST_DAY = DAY_LABELS[DAY_LABELS.length-1];
   var TT_GLOBAL_END = new Date(DAY_START_MAP[TT_LAST_DAY].getTime() + ttGridHoursForDay(TT_LAST_DAY)*3600000);
-  var TT_TOTAL_HOURS = Math.round((TT_GLOBAL_END - TT_GLOBAL_START) / 3600000);
+
+  // Dead time (no act on any stage) longer than this gets visually compressed
+  // down to exactly this many hours, so you never scroll through more than
+  // a couple of empty hours in a row.
+  var TT_MAX_GAP_HOURS = 2;
+
+  function buildTtTimeline(){
+    var busy = [];
+    EVENTS.forEach(function(e){
+      var dayEnd = new Date(DAY_START_MAP[e.dayLabel].getTime() + ttGridHoursForDay(e.dayLabel)*3600000);
+      var s = e.start.getTime();
+      var en = Math.min(e.end.getTime(), dayEnd.getTime());
+      if(en > s) busy.push([s, en]);
+    });
+    busy.sort(function(a,b){ return a[0]-b[0]; });
+    var merged = [];
+    busy.forEach(function(iv){
+      if(merged.length && iv[0] <= merged[merged.length-1][1]){
+        merged[merged.length-1][1] = Math.max(merged[merged.length-1][1], iv[1]);
+      } else {
+        merged.push(iv.slice());
+      }
+    });
+
+    var segments = [];
+    var dispCursor = 0;
+    var maxGapMs = TT_MAX_GAP_HOURS * 3600000;
+
+    function addGap(gapStart, gapEnd){
+      if(gapEnd <= gapStart) return;
+      var realDur = gapEnd - gapStart;
+      var dispDur = Math.min(realDur, maxGapMs);
+      segments.push({ start:gapStart, end:gapEnd, dispStart:dispCursor, dispEnd:dispCursor+dispDur, isGap:true, compressed: realDur > maxGapMs });
+      dispCursor += dispDur;
+    }
+    function addBusy(bStart, bEnd){
+      if(bEnd <= bStart) return;
+      var dur = bEnd - bStart;
+      segments.push({ start:bStart, end:bEnd, dispStart:dispCursor, dispEnd:dispCursor+dur, isGap:false, compressed:false });
+      dispCursor += dur;
+    }
+
+    var cursor = TT_GLOBAL_START.getTime();
+    merged.forEach(function(iv){
+      if(iv[0] > cursor) addGap(cursor, iv[0]);
+      addBusy(Math.max(iv[0], cursor), iv[1]);
+      cursor = Math.max(cursor, iv[1]);
+    });
+    var globalEndMs = TT_GLOBAL_END.getTime();
+    if(cursor < globalEndMs) addGap(cursor, globalEndMs);
+
+    return { segments: segments, totalDispMs: dispCursor };
+  }
+
+  var TT_TIMELINE = buildTtTimeline();
+  var TT_TOTAL_HOURS = TT_TIMELINE.totalDispMs / 3600000;
+
+  function ttSegmentAt(ms){
+    var segs = TT_TIMELINE.segments;
+    for(var i=0;i<segs.length;i++){
+      if(ms >= segs[i].start && ms <= segs[i].end) return segs[i];
+    }
+    return segs.length ? segs[segs.length-1] : null;
+  }
+
+  function timeToDisplayHours(t){
+    var ms = (t instanceof Date) ? t.getTime() : t;
+    if(ms <= TT_GLOBAL_START.getTime()) return 0;
+    if(ms >= TT_GLOBAL_END.getTime()) return TT_TOTAL_HOURS;
+    var seg = ttSegmentAt(ms);
+    if(!seg) return TT_TOTAL_HOURS;
+    var realDur = seg.end - seg.start;
+    var frac = realDur > 0 ? (ms - seg.start) / realDur : 0;
+    var dispMs = seg.dispStart + frac * (seg.dispEnd - seg.dispStart);
+    return dispMs / 3600000;
+  }
+
+  function displayHoursToTime(dispHours){
+    var dispMs = dispHours * 3600000;
+    if(dispMs <= 0) return TT_GLOBAL_START.getTime();
+    if(dispMs >= TT_TIMELINE.totalDispMs) return TT_GLOBAL_END.getTime();
+    var segs = TT_TIMELINE.segments;
+    for(var i=0;i<segs.length;i++){
+      var s = segs[i];
+      if(dispMs >= s.dispStart && dispMs <= s.dispEnd){
+        var dispDur = s.dispEnd - s.dispStart;
+        var frac = dispDur > 0 ? (dispMs - s.dispStart) / dispDur : 0;
+        return s.start + frac * (s.end - s.start);
+      }
+    }
+    return TT_GLOBAL_END.getTime();
+  }
 
   function renderDayTabs(){
     var el = document.getElementById('day-tabs');
@@ -1353,7 +1480,7 @@
     renderDayTabs();
     var scrollEl = document.getElementById('tt-scroll');
     if(!scrollEl) return;
-    var offsetH = (DAY_START_MAP[dl] - TT_GLOBAL_START) / 3600000;
+    var offsetH = timeToDisplayHours(DAY_START_MAP[dl]);
     scrollEl.scrollLeft = Math.max(0, TT_STAGE_COL_W + offsetH*TT_PX_PER_HOUR - 8);
   }
 
@@ -1459,17 +1586,31 @@
     var prevScrollLeft = scrollEl.scrollLeft;
 
     var html = '';
-    html += '<div class="tt-corner" style="width:'+ TT_STAGE_COL_W +'px; height:'+ TT_HEADER_H +'px;"></div>';
 
-    // day-name row + hour row, spanning the full continuous timeline
-    for(var h = 0; h < TT_TOTAL_HOURS; h++){
-      var clockHour = (12 + h) % 24;
+    // day-name row + hour row, spanning the full continuous (compressed) timeline
+    var realTotalHours = Math.round((TT_GLOBAL_END - TT_GLOBAL_START) / 3600000);
+    for(var h = 0; h < realTotalHours; h++){
+      var tMs = TT_GLOBAL_START.getTime() + h*3600000;
+      var seg = ttSegmentAt(tMs);
+      if(seg && seg.isGap && seg.compressed) continue; // skipped: covered by the gap marker below
+      var clockHour = new Date(tMs).getHours();
       var label = (clockHour < 10 ? '0'+clockHour : clockHour) + ':00';
-      html += '<div class="tt-hour-label" style="left:'+ (TT_STAGE_COL_W + h*TT_PX_PER_HOUR) +'px; top:'+ TT_DAYROW_H +'px; width:'+ TT_PX_PER_HOUR +'px; height:'+ TT_HOURROW_H +'px;">'+ label +'</div>';
+      var hx = timeToDisplayHours(tMs);
+      html += '<div class="tt-hour-label" style="left:'+ (TT_STAGE_COL_W + hx*TT_PX_PER_HOUR) +'px; top:'+ TT_DAYROW_H +'px; width:'+ TT_PX_PER_HOUR +'px; height:'+ TT_HOURROW_H +'px;">'+ label +'</div>';
     }
+    // one marker per compressed gap, showing how much dead time was skipped
+    TT_TIMELINE.segments.forEach(function(seg){
+      if(!seg.isGap || !seg.compressed) return;
+      var skippedHours = Math.round((seg.end - seg.start) / 3600000);
+      var gx = TT_STAGE_COL_W + (seg.dispStart/3600000) * TT_PX_PER_HOUR;
+      var gw = ((seg.dispEnd - seg.dispStart)/3600000) * TT_PX_PER_HOUR;
+      html += '<div class="tt-gap-marker" style="left:'+ gx +'px; top:'+ TT_DAYROW_H +'px; width:'+ gw +'px; height:'+ TT_HOURROW_H +'px;">⋯ '+ skippedHours +'u pauze ⋯</div>';
+    });
     DAY_LABELS.forEach(function(dl, di){
-      var dayOffsetH = (DAY_START_MAP[dl] - TT_GLOBAL_START) / 3600000;
-      var dayWidth = ttGridHoursForDay(dl) * TT_PX_PER_HOUR;
+      var dayStartMs = DAY_START_MAP[dl].getTime();
+      var dayEndMs = dayStartMs + ttGridHoursForDay(dl)*3600000;
+      var dayOffsetH = timeToDisplayHours(dayStartMs);
+      var dayWidth = (timeToDisplayHours(dayEndMs) - dayOffsetH) * TT_PX_PER_HOUR;
       html += '<div class="tt-day-label" style="left:'+ (TT_STAGE_COL_W + dayOffsetH*TT_PX_PER_HOUR) +'px; width:'+ dayWidth +'px; height:'+ TT_DAYROW_H +'px;">'+ DAY_NAMES[di] +' '+ dl +'</div>';
       if(di > 0){
         html += '<div class="tt-day-divider" style="left:'+ (TT_STAGE_COL_W + dayOffsetH*TT_PX_PER_HOUR) +'px; height:'+ gridHeight +'px;"></div>';
@@ -1501,10 +1642,10 @@
       if(e.start >= dayEnd) return;
 
       var visibleEnd = e.end > dayEnd ? dayEnd : e.end;
-      var startOffsetH = (e.start - TT_GLOBAL_START) / 3600000;
-      var durH = Math.max(0, (visibleEnd - e.start) / 3600000);
-      var left = TT_STAGE_COL_W + startOffsetH * TT_PX_PER_HOUR;
-      var width = Math.max(durH * TT_PX_PER_HOUR - 4, 40);
+      var startX = timeToDisplayHours(e.start);
+      var endX = timeToDisplayHours(visibleEnd);
+      var left = TT_STAGE_COL_W + startX * TT_PX_PER_HOUR;
+      var width = Math.max((endX - startX) * TT_PX_PER_HOUR - 4, 40);
       var top = TT_HEADER_H + rowIndex * TT_ROW_H + 3;
       var height = TT_ROW_H - 6;
       var live = e.start <= n && n < visibleEnd;
@@ -1518,7 +1659,7 @@
 
     // now line (only if "now" falls within the festival's overall timeline)
     if(n >= TT_GLOBAL_START && n < TT_GLOBAL_END){
-      var nowOffsetH = (n - TT_GLOBAL_START) / 3600000;
+      var nowOffsetH = timeToDisplayHours(n);
       var nowLeft = TT_STAGE_COL_W + nowOffsetH * TT_PX_PER_HOUR;
       html += '<div class="tt-now-line" style="left:'+ nowLeft +'px; height:'+ gridHeight +'px;"><div class="tt-now-dot"></div></div>';
     }
@@ -1545,7 +1686,7 @@
     requestAnimationFrame(function(){
       var scrollEl = document.getElementById('tt-scroll');
       var centerH = (scrollEl.scrollLeft + scrollEl.clientWidth*0.3 - TT_STAGE_COL_W) / TT_PX_PER_HOUR;
-      var centerTime = new Date(TT_GLOBAL_START.getTime() + centerH*3600000);
+      var centerTime = new Date(displayHoursToTime(Math.max(0, centerH)));
       var nearest = DAY_LABELS[0];
       DAY_LABELS.forEach(function(dl){
         if(centerTime >= DAY_START_MAP[dl]) nearest = dl;
@@ -1606,7 +1747,7 @@
     var globalOffsetH;
 
     if(n >= TT_GLOBAL_START && n < TT_GLOBAL_END){
-      globalOffsetH = (n - TT_GLOBAL_START) / 3600000;
+      globalOffsetH = timeToDisplayHours(n);
     } else if(n < TT_GLOBAL_START){
       globalOffsetH = 0;
     } else {
@@ -1671,7 +1812,7 @@
 
   // ---------- actions ----------
   function logIntake(productId){
-    var entry = { id: uid(), productId: productId, timestamp: now().toISOString() };
+    var entry = { id: uid(), productId: productId, timestamp: now().toISOString(), amount: 1 };
     entries.push(entry);
     saveJSON(STORAGE_KEY, entries);
     renderAll();
@@ -1700,16 +1841,21 @@
     var hh = d.getHours() < 10 ? '0'+d.getHours() : ''+d.getHours();
     var mm = d.getMinutes() < 10 ? '0'+d.getMinutes() : ''+d.getMinutes();
     document.getElementById('edit-time-input').value = hh + ':' + mm;
+    document.getElementById('edit-amount-input').value = entry.amount || 1;
     document.getElementById('edit-time-dialog').showModal();
   }
-  function updateEntryTime(entryId, hhmm){
+  function updateEntryTime(entryId, hhmm, amount){
     var entry = null;
     for(var i=0;i<entries.length;i++){ if(entries[i].id === entryId){ entry = entries[i]; break; } }
-    if(!entry || !hhmm) return;
-    var parts = hhmm.split(':');
-    var d = new Date(entry.timestamp);
-    d.setHours(parseInt(parts[0],10), parseInt(parts[1],10), 0, 0);
-    entry.timestamp = d.toISOString();
+    if(!entry) return;
+    if(hhmm){
+      var parts = hhmm.split(':');
+      var d = new Date(entry.timestamp);
+      d.setHours(parseInt(parts[0],10), parseInt(parts[1],10), 0, 0);
+      entry.timestamp = d.toISOString();
+    }
+    var amt = parseFloat(amount);
+    entry.amount = (!isNaN(amt) && amt > 0) ? Math.round(amt * 4) / 4 : 1;
     saveJSON(STORAGE_KEY, entries);
   }
 
@@ -1892,8 +2038,21 @@
   document.getElementById('edit-time-cancel').addEventListener('click', function(){ editTimeDialog.close(); });
   document.getElementById('edit-time-confirm').addEventListener('click', function(){
     var val = document.getElementById('edit-time-input').value;
-    if(editingEntryId && val){ updateEntryTime(editingEntryId, val); renderAll(); }
+    var amountVal = document.getElementById('edit-amount-input').value;
+    if(editingEntryId){ updateEntryTime(editingEntryId, val, amountVal); renderAll(); }
     editTimeDialog.close();
+  });
+  document.getElementById('edit-amount-minus').addEventListener('click', function(){
+    var input = document.getElementById('edit-amount-input');
+    var cur = parseFloat(input.value) || 1;
+    var v = Math.max(0.25, Math.round((cur - 0.25) * 4) / 4);
+    input.value = v;
+  });
+  document.getElementById('edit-amount-plus').addEventListener('click', function(){
+    var input = document.getElementById('edit-amount-input');
+    var cur = parseFloat(input.value) || 1;
+    var v = Math.round((cur + 0.25) * 4) / 4;
+    input.value = v;
   });
 
   // dev time override
