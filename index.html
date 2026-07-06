@@ -377,6 +377,31 @@
   }
   .settings-close-x:active{ background: rgba(255,107,107,0.15); color: var(--danger); }
   .add-product-title{ font-family: var(--font-display); font-weight:700; font-size:16px; color: var(--text); margin:0 0 14px; }
+
+  /* Timetable bottom spacing fix */
+  #screen-timetable{
+    padding-bottom: calc(150px + env(safe-area-inset-bottom));
+  }
+
+  #screen-timetable .tt-scroll{
+    padding-bottom: calc(170px + env(safe-area-inset-bottom)) !important;
+    margin-bottom: calc(40px + env(safe-area-inset-bottom));
+  }
+
+  #screen-timetable .tt-inner{
+    margin-bottom: calc(140px + env(safe-area-inset-bottom));
+  }
+
+
+  /* Dialog visibility fix */
+  dialog:not([open]){
+    display:none !important;
+  }
+
+  dialog[open].settings-dialog{
+    display:flex;
+  }
+
 </style>
 </head>
 <body>
@@ -568,19 +593,33 @@
   // aan te passen (artiest, podium, dag, start/eind tijd).
   // =====================================================================
 
-  var STAGES = ["Wildlive","Vuurtorenstrand","Kas","Eiland","Strand","Helling","BUDXLodge","Bamboebos","Duinpan","Studio De Baan","Achtertuin"];
+  var STAGES = ["Wildlive","Vuurtoren","Kas","Eiland","Strand","Helling","BUDXLodge","Bamboebos","Duinpan","Studio De Baan","Achtertuin"];
 
   var DAY_LABELS = ["9 juli","10 juli","11 juli","12 juli"];
   var DAY_NAMES = ["Donderdag","Vrijdag","Zaterdag","Zondag"];
 
-  // Each festival day runs 12:00 -> 08:00 the next calendar morning.
+  // Each festival day runs 12:00 -> 08:00 the next calendar morning,
+  // except Sunday, where the scroll timetable stops at 00:00.
   var DAY_START_MAP = {
     "9 juli": new Date(2026,6,9,12,0,0),
     "10 juli": new Date(2026,6,10,12,0,0),
     "11 juli": new Date(2026,6,11,12,0,0),
     "12 juli": new Date(2026,6,12,12,0,0)
   };
-  var TT_GRID_HOURS = 20;
+
+  var TT_GRID_HOURS_DEFAULT = 20;
+  var TT_GRID_HOURS_BY_DAY = {
+    "9 juli": 20,
+    "10 juli": 20,
+    "11 juli": 20,
+    "12 juli": 12
+  };
+
+  function ttGridHoursForDay(dayLabel){
+    return TT_GRID_HOURS_BY_DAY[dayLabel] || TT_GRID_HOURS_DEFAULT;
+  }
+
+  var TT_GRID_HOURS = TT_GRID_HOURS_DEFAULT;
 
   // y, m(0-indexed), d, h, mi
   function D(y,m,d,h,mi){ return new Date(y,m,d,h,mi,0); }
@@ -600,8 +639,8 @@
     EVENTS.push(ev("Mexel Helderman","Wildlive",dl, D(2026,6,9,18,0), D(2026,6,9,21,0)));
     EVENTS.push(ev("Freddi","Wildlive",dl, D(2026,6,9,21,0), D(2026,6,9,23,0)));
 
-    EVENTS.push(ev("Bevan","Vuurtorenstrand",dl, D(2026,6,9,18,0), D(2026,6,9,21,0)));
-    EVENTS.push(ev("Laura Meester","Vuurtorenstrand",dl, D(2026,6,9,21,0), D(2026,6,9,23,0)));
+    EVENTS.push(ev("Bevan","Vuurtoren",dl, D(2026,6,9,18,0), D(2026,6,9,21,0)));
+    EVENTS.push(ev("Laura Meester","Vuurtoren",dl, D(2026,6,9,21,0), D(2026,6,9,23,0)));
 
     EVENTS.push(ev("Itz3bby","Kas",dl, D(2026,6,9,19,0), D(2026,6,9,21,0)));
     EVENTS.push(ev("Jan Koster","Kas",dl, D(2026,6,9,21,0), D(2026,6,9,23,0)));
@@ -1283,9 +1322,11 @@
   var TT_HEADER_H = TT_DAYROW_H + TT_HOURROW_H;
   var TT_STAGE_COL_W = 84;
 
-  // The whole festival as one continuous timeline: Thursday 12:00 -> Sunday close (08:00 Monday).
+  // The whole festival as one continuous timeline.
+  // Sunday now ends at 00:00 instead of continuing into Monday morning.
   var TT_GLOBAL_START = DAY_START_MAP[DAY_LABELS[0]];
-  var TT_GLOBAL_END = new Date(DAY_START_MAP[DAY_LABELS[DAY_LABELS.length-1]].getTime() + TT_GRID_HOURS*3600000);
+  var TT_LAST_DAY = DAY_LABELS[DAY_LABELS.length-1];
+  var TT_GLOBAL_END = new Date(DAY_START_MAP[TT_LAST_DAY].getTime() + ttGridHoursForDay(TT_LAST_DAY)*3600000);
   var TT_TOTAL_HOURS = Math.round((TT_GLOBAL_END - TT_GLOBAL_START) / 3600000);
 
   function renderDayTabs(){
@@ -1428,7 +1469,7 @@
     }
     DAY_LABELS.forEach(function(dl, di){
       var dayOffsetH = (DAY_START_MAP[dl] - TT_GLOBAL_START) / 3600000;
-      var dayWidth = (di < DAY_LABELS.length - 1 ? 24 : (TT_TOTAL_HOURS - dayOffsetH)) * TT_PX_PER_HOUR;
+      var dayWidth = ttGridHoursForDay(dl) * TT_PX_PER_HOUR;
       html += '<div class="tt-day-label" style="left:'+ (TT_STAGE_COL_W + dayOffsetH*TT_PX_PER_HOUR) +'px; width:'+ dayWidth +'px; height:'+ TT_DAYROW_H +'px;">'+ DAY_NAMES[di] +' '+ dl +'</div>';
       if(di > 0){
         html += '<div class="tt-day-divider" style="left:'+ (TT_STAGE_COL_W + dayOffsetH*TT_PX_PER_HOUR) +'px; height:'+ gridHeight +'px;"></div>';
@@ -1455,13 +1496,18 @@
     visibleEvents.forEach(function(e){
       var rowIndex = rows.indexOf(e.stage);
       if(rowIndex === -1) return;
+
+      var dayEnd = new Date(DAY_START_MAP[e.dayLabel].getTime() + ttGridHoursForDay(e.dayLabel)*3600000);
+      if(e.start >= dayEnd) return;
+
+      var visibleEnd = e.end > dayEnd ? dayEnd : e.end;
       var startOffsetH = (e.start - TT_GLOBAL_START) / 3600000;
-      var durH = (e.end - e.start) / 3600000;
+      var durH = Math.max(0, (visibleEnd - e.start) / 3600000);
       var left = TT_STAGE_COL_W + startOffsetH * TT_PX_PER_HOUR;
       var width = Math.max(durH * TT_PX_PER_HOUR - 4, 40);
       var top = TT_HEADER_H + rowIndex * TT_ROW_H + 3;
       var height = TT_ROW_H - 6;
-      var live = e.start <= n && n < e.end;
+      var live = e.start <= n && n < visibleEnd;
       var fav = isFav(e.id);
       html += '<div class="tt-event'+ (fav?' is-fav':'') + (live?' is-live':'') +'" data-fav="'+ e.id +'" style="left:'+ left +'px; top:'+ top +'px; width:'+ width +'px; height:'+ height +'px;">' +
         (fav ? '<span class="tt-fav-badge">★</span>' : '') +
