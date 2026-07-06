@@ -269,11 +269,6 @@
     100%{ transform: scale(1); opacity:0; }
   }
 
-  .timeoverride{ margin-top: 26px; padding-top: 14px; border-top: 1px dashed var(--line-soft); }
-  .timeoverride label{ font-size:11px; color: var(--muted-dim); text-transform:uppercase; letter-spacing:0.5px; display:block; margin-bottom:6px; }
-  .timeoverride .row{ display:flex; gap:8px; }
-  .timeoverride input{ flex:1; background: var(--surface); border:1.5px solid var(--line); color: var(--text); border-radius:12px; padding:8px 12px; font-family: var(--font-mono); font-size:13px; }
-  .timeoverride button{ background: transparent; border:1.5px solid var(--line); color: var(--muted); border-radius:999px; padding:8px 14px; font-size:12px; font-weight:600; }
 
   /* ---------- log screen: ring card, quick log, badges, log rows ---------- */
   .log-date{ font-size:13px; color: var(--muted); font-family: var(--font-mono); margin-bottom:16px; }
@@ -439,14 +434,6 @@
       </div>
 
       <button class="fab-log" id="go-log-btn">+ Log innamemoment</button>
-
-      <div class="timeoverride">
-        <label>Dev: tijd overschrijven (voor testen)</label>
-        <div class="row">
-          <input type="datetime-local" id="time-override-input">
-          <button id="time-override-clear">Reset</button>
-        </div>
-      </div>
     </section>
 
     <!-- LOG SCREEN -->
@@ -2053,17 +2040,6 @@
     var cur = parseFloat(input.value) || 1;
     var v = Math.round((cur + 0.25) * 4) / 4;
     input.value = v;
-  });
-
-  // dev time override
-  document.getElementById('time-override-input').addEventListener('change', function(e){
-    if(e.target.value){ timeOverride = new Date(e.target.value); } else { timeOverride = null; }
-    renderAll();
-  });
-  document.getElementById('time-override-clear').addEventListener('click', function(){
-    timeOverride = null;
-    document.getElementById('time-override-input').value = '';
-    renderAll();
   });
 
   // ---------- init ----------
